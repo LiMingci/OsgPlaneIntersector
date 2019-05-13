@@ -160,25 +160,7 @@ int main(int argc, char* argv[])
 	root->addChild(scene.get());
 	root->addChild(geode.get());
 
-	//osgDB::writeNodeFile(*(geode.get()), "data/line.obj");
-
-	osgViewer::Viewer viewer;
-	// add the state manipulator
-	viewer.addEventHandler(new osgGA::StateSetManipulator(viewer.getCamera()->getOrCreateStateSet()));
-
-	// add the thread model handler
-	viewer.addEventHandler(new osgViewer::ThreadingHandler);
-
-	// add the window size toggle handler
-	viewer.addEventHandler(new osgViewer::WindowSizeHandler);
-
-	// add the stats handler
-	viewer.addEventHandler(new osgViewer::StatsHandler);
-
-	viewer.setSceneData(root.get());
-
-	viewer.realize();
-	viewer.run();
+	showData(root.get());
 
 
 	return 0;
@@ -258,7 +240,7 @@ int main(int argc, char* argv[])
 	for (std::size_t k = 0; k < 100; k++)
 	{
 		isoheight::TriangleIntersector triIntersect;
-		triIntersect.set(osg::Plane(0.0, 0.0, -1.0, -50.0 + k * 5));
+		triIntersect.set(osg::Plane(0.0, 0.0, -1.0, 5.0 + k * 5.0));
 
 		MyMesh::FaceIter f_it = triMesh.faces_begin();
 		for (; f_it != triMesh.faces_end(); f_it++)
